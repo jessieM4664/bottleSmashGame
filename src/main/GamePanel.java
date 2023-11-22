@@ -2,13 +2,11 @@ package main;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicComboBoxUI.KeyHandler;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends JPanel implements Runnable{
     // Screen settings
 
     final int originalTileSize = 16; // 16x16 tile
@@ -22,8 +20,6 @@ public class GamePanel extends JPanel {
 
     KeyHandler keyH;
 
-    //BasicComboBoxUI box = new BasicComboBoxUI();
-    //KeyHandler keyH = box.new KeyHandler();
     Thread gameThread; // keeps program running untill manually stopped
 
     //set players default postion
@@ -33,10 +29,22 @@ public class GamePanel extends JPanel {
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(Color.black);
+        this.setBackground(Color.darkGray);
         this.setDoubleBuffered(true);
 
         this.addKeyListener(keyH);
         this.setFocusable(true);
+    }
+
+    public void startGameThread() {
+        gameThread = new Thread(this);
+        gameThread.start();
+    }
+
+    @Override
+    public void run() {
+        while (gameThread != null) {
+            System.out.println("The game is running");
+        }
     }
 }

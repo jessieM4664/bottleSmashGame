@@ -1,2 +1,4 @@
+Git Repository::
+
 -when hit with rock, fall off platform to signify game over.
 -point for each smashed bottle
