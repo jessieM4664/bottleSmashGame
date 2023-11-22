@@ -6,9 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
-import javax.swing.plaf.basic.BasicComboBoxUI.KeyHandler;
 
-public class GamePanel extends JPanel implements Runnable{
+public class GamePanel extends JPanel implements Runnable {
     // Screen settings
 
     final int originalTileSize = 16; // 16x16 tile
@@ -20,8 +19,9 @@ public class GamePanel extends JPanel implements Runnable{
     final int screenWidth = tileSize * maxScreenCol; // 768 px
     final int screenHeight = tileSize * maxScreenRow; // 576 px
 
-    KeyHandler keyH;
+    int FPS = 60; // frames per second
 
+    KeyHandler keyH = new KeyHandler();
     Thread gameThread; // keeps program running untill manually stopped
 
     //set players default postion
@@ -33,7 +33,6 @@ public class GamePanel extends JPanel implements Runnable{
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.darkGray);
         this.setDoubleBuffered(true);
-
         this.addKeyListener(keyH);
         this.setFocusable(true);
     }
@@ -45,24 +44,46 @@ public class GamePanel extends JPanel implements Runnable{
 
     @Override
     public void run() {
+        double drawInterval = 1000000000/FPS; // 0.1666 second
+        double nextDrawTime = System.nanoTime() + drawInterval;
         while (gameThread != null) {
-            //System.out.println("The game is running");
-            //1 UPDATE: update information.
             update();
             repaint();
-            //2 DRAW: draw the screen.
+            try {
+                double remainingTime = nextDrawTime - System.nanoTime();
+                remainingTime = remainingTime/1000000;
+                
+                if (remainingTime < 0) {
+                    remainingTime = 0;
+                }
+
+                Thread.sleep((long)remainingTime);
+
+                nextDrawTime += drawInterval;
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public void update() {
-
+        if (keyH.upPressed == true) { // jump
+            // add code for jumping
+        } else if (keyH.downPressed == true) { // crouch
+            // add code for crouching
+        } else if (keyH.leftPressed == true) {
+            playerX -= playerSpeed;
+        } else if (keyH.rightPressed == true) {
+            playerX += playerSpeed;
+        }
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
         g2.setColor(Color.white);
-        g2.fillRect(100, 100, tileSize, tileSize);
+        g2.fillRect(playerX, playerY, tileSize, tileSize);
         g2.dispose();
     }
 }

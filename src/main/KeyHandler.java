@@ -1,3 +1,5 @@
+package main;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -12,15 +14,15 @@ public class KeyHandler implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        int code = e.getKeyCode(); // returns the integer keycode assocaited with the key that is pressed
+        int code = e.getKeyCode();
         if (code == KeyEvent.VK_W) {
             upPressed = true;
         }
         if (code == KeyEvent.VK_A) {
-            downPressed = true;
+            leftPressed = true;
         }
         if (code == KeyEvent.VK_S) {
-            leftPressed = true;
+            downPressed = true;
         }
         if (code == KeyEvent.VK_D) {
             rightPressed = true;
@@ -30,15 +32,14 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
-
-        if (code == KeyEvent.VK_W) { // jump
+        if (code == KeyEvent.VK_W) {
             upPressed = false;
         }
         if (code == KeyEvent.VK_A) {
-            downPressed = false;
-        }
-        if (code == KeyEvent.VK_S) { // crouch
             leftPressed = false;
+        }
+        if (code == KeyEvent.VK_S) {
+            downPressed = false;
         }
         if (code == KeyEvent.VK_D) {
             rightPressed = false;
