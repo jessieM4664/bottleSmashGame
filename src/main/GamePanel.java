@@ -2,6 +2,8 @@ package main;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicComboBoxUI.KeyHandler;
@@ -44,7 +46,23 @@ public class GamePanel extends JPanel implements Runnable{
     @Override
     public void run() {
         while (gameThread != null) {
-            System.out.println("The game is running");
+            //System.out.println("The game is running");
+            //1 UPDATE: update information.
+            update();
+            repaint();
+            //2 DRAW: draw the screen.
         }
+    }
+
+    public void update() {
+
+    }
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D)g;
+        g2.setColor(Color.white);
+        g2.fillRect(100, 100, tileSize, tileSize);
+        g2.dispose();
     }
 }
