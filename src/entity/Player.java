@@ -45,10 +45,10 @@ public class Player extends Entity {
                 // add code for jumping
             } else if (keyH.downPressed == true) { // crouch
                 // add code for crouching
-            } else if (keyH.leftPressed == true) {
+            } else if (keyH.leftPressed == true && x - speed >= 0) {
                 direction = "left";
                 x -= speed;
-            } else if (keyH.rightPressed == true) {
+            } else if (keyH.rightPressed == true && x + speed <= 810) {
                 direction = "right";
                 x += speed;
             }
