@@ -4,10 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
 import javax.swing.JPanel;
-import javax.swing.text.PlainDocument;
-
 import entity.Player;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -31,7 +28,7 @@ public class GamePanel extends JPanel implements Runnable {
     //set players default postion
     int playerX = 100;
     int playerY = 100;
-    int playerSpeed = 4;
+    int playerSpeed = 8;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));

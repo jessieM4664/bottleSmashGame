@@ -22,9 +22,9 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        x = 100;
-        y = 100;
-        speed = 4;
+        x = 350;//
+        y = 450;//
+        speed = 5;
         direction = "left";
     }
 
