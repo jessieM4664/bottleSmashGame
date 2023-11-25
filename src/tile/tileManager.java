@@ -24,8 +24,8 @@ public class tileManager {
             e.printStackTrace();
         }
     }
-
+//
     public void draw(Graphics2D g2) {
-        g2.drawImage(tile[0].image, 0, 0, 768, 576, null);
+        g2.drawImage(tile[0].image, 0, 0, 864, 576, null); // screen background demensions
     }
 }
